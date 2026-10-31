@@ -226,17 +226,54 @@ function toggleMusic() {
     const song = document.getElementById("ourSong");
     const button = document.getElementById("musicButton");
     const message = document.getElementById("musicMessage");
+    const heart = document.getElementById("musicHeart");
 
     if (song.paused) {
         song.play().then(() => {
             button.innerHTML = "♡ Pausar canción ♡";
             message.textContent = "Esta canción es para ti, Melanie ❤️";
+            heart.classList.add("playing");
         }).catch(() => {
-            message.textContent = "No se pudo reproducir. Revisa el archivo de música.";
+            message.textContent = "No se pudo reproducir la canción.";
         });
     } else {
         song.pause();
         button.innerHTML = "♡ Reproducir nuestra canción ♡";
         message.textContent = "Cuando quieras, seguimos escuchando juntos.";
+        heart.classList.remove("playing");
     }
+}
+
+const songPlayer = document.getElementById("ourSong");
+
+if (songPlayer) {
+    songPlayer.addEventListener("timeupdate", () => {
+        const progress = document.getElementById("musicProgress");
+        const time = document.getElementById("musicTime");
+
+        const current = songPlayer.currentTime;
+        const duration = songPlayer.duration || 0;
+
+        const percentage = duration ? (current / duration) * 100 : 0;
+
+        progress.style.width = percentage + "%";
+
+        const formatTime = seconds => {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return String(min).padStart(2, "0") + ":" +
+                   String(sec).padStart(2, "0");
+        };
+
+        time.textContent =
+            formatTime(current) + " / " + formatTime(duration);
+    });
+
+    songPlayer.addEventListener("ended", () => {
+        document.getElementById("musicButton").innerHTML =
+            "♡ Reproducir nuestra canción ♡";
+        document.getElementById("musicHeart").classList.remove("playing");
+        document.getElementById("musicMessage").textContent =
+            "Una canción que siempre me recordará a ti. ❤️";
+    });
 }
