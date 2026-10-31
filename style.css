@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,25 +9,56 @@
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle, #421018, #10090c 75%);
-  color: white;
-  font-family: Georgia, serif;
+  background:
+    radial-gradient(ellipse at top, #50101e 0%, transparent 55%),
+    linear-gradient(145deg, #10090c, #210b12, #090609);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
+#floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  animation: floatUp linear forwards;
+  opacity: 0.65;
+}
+
+.topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 7%;
+  border-bottom: 1px solid #ffffff15;
+  color: #e9a0ad;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
 .container {
-  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  min-height: 82vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px;
+  padding: 45px 20px;
   text-align: center;
 }
 
 .screen {
   display: none;
   width: 100%;
-  max-width: 600px;
+  max-width: 680px;
   animation: appear 0.8s ease;
 }
 
@@ -33,99 +66,276 @@ body {
   display: block;
 }
 
-.heart {
-  font-size: 65px;
-  margin-bottom: 20px;
-  animation: heartbeat 1.5s infinite;
-}
-
-h1 {
-  color: #ff667b;
-  font-size: 42px;
-  margin: 18px 0;
+.rose {
+  font-size: 75px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 20px #d52c50);
+  animation: heartbeat 2s infinite;
 }
 
 .subtitle {
-  color: #ff9aaa;
-  letter-spacing: 3px;
+  color: #f08b9e;
+  letter-spacing: 4px;
   font-size: 11px;
-  margin: 15px 0;
+  margin: 18px 0;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: #f18b9e;
+  font-size: clamp(38px, 8vw, 62px);
+  font-weight: 600;
+  margin: 18px 0;
+}
+
+.name {
+  color: #fff;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 34px;
+  font-weight: 400;
 }
 
 .description {
-  color: #e8d5d8;
-  font-size: 17px;
-  line-height: 1.8;
+  color: #e5cbd0;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 2;
+  white-space: pre-line;
+  max-width: 560px;
   margin: 20px auto;
 }
 
+.small-note {
+  color: #b98b95;
+  font-size: 11px;
+  margin-top: 25px;
+  letter-spacing: 1px;
+}
+
 button {
-  background: #a71932;
+  background: linear-gradient(135deg, #a71937, #650d25);
   color: white;
-  border: 1px solid #ff7185;
+  border: 1px solid #ec7189;
   border-radius: 30px;
-  padding: 15px 27px;
-  font-size: 15px;
+  padding: 14px 27px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 15px 5px;
   transition: 0.3s;
+  box-shadow: 0 5px 22px #9d183533;
 }
 
 button:hover {
-  background: #e02b4c;
-  transform: scale(1.05);
+  background: #c52a4b;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px #e32e5544;
 }
 
 .envelope {
-  background: linear-gradient(145deg, #a71932, #510c1c);
-  border: 1px solid #ff7185;
-  border-radius: 15px;
+  background: linear-gradient(145deg, #a71937, #390a18);
+  border: 1px solid #ec7189;
+  border-radius: 18px;
   padding: 45px 20px;
   margin: 30px auto;
   max-width: 320px;
   cursor: pointer;
-  box-shadow: 0 0 30px #a7193255;
+  box-shadow: 0 0 35px #a7193744;
+  transition: 0.4s;
+}
+
+.envelope:hover {
+  transform: scale(1.04);
 }
 
 .envelope span {
-  font-size: 65px;
+  font-size: 75px;
 }
 
 .envelope p {
   margin-top: 15px;
-  color: #ffe2e7;
+  color: #ffe1e8;
 }
 
 .letter-text {
   display: none;
-  background: #f8e9e9;
-  color: #3b1019;
-  padding: 25px;
-  border-radius: 15px;
+  background: #f9e9eb;
+  color: #48121f;
+  padding: 30px;
+  border-radius: 16px;
   text-align: left;
-  line-height: 1.8;
+  line-height: 2;
   white-space: pre-line;
-  margin-top: 20px;
+  margin: 25px auto;
+  box-shadow: 0 0 30px #0008;
 }
 
 .letter-text h2 {
-  color: #a71932;
+  color: #a71937;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
   margin-bottom: 15px;
 }
 
-.letter-text button {
-  display: block;
-  margin: 20px auto 0;
+.letter-text p {
+  font-size: 14px;
+}
+
+.quiz-card,
+.memory {
+  background: #260e17cc;
+  border: 1px solid #8f3549;
+  border-radius: 18px;
+  padding: 25px;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.quiz-card h2,
+.memory h2 {
+  color: #f3a0af;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 27px;
+}
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.answer.correct {
+  background: #276b42;
+  border-color: #77d99c;
+}
+
+.answer.wrong {
+  background: #751d2b;
+  border-color: #ff8493;
+}
+
+#quizResult,
+#puzzleResult {
+  color: #f4a0ae;
+  margin: 15px;
+}
+
+.reasons,
+.puzzle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.reasons button,
+.puzzle button {
+  width: 65px;
+  height: 65px;
+  font-size: 26px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.reason-text {
+  color: #ffc2cd;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  margin: 25px auto;
+  min-height: 45px;
+}
+
+.puzzle button.found {
+  background: #641e30;
+  border-color: #e98a9d;
+  opacity: 0.6;
+}
+
+.hidden {
+  display: none;
+}
+
+.timeline {
+  margin: 30px 0;
+  border-left: 2px solid #a8324c;
+  padding-left: 25px;
+  text-align: left;
+}
+
+.memory {
+  position: relative;
+}
+
+.memory::before {
+  content: "❤️";
+  position: absolute;
+  left: -39px;
+  top: 22px;
+  font-size: 16px;
+}
+
+.memory span {
+  color: #ee91a3;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.memory p {
+  color: #e3c6cc;
+  font-size: 13px;
+  line-height: 1.9;
+  margin-top: 12px;
+}
+
+.coupons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.coupon {
+  padding: 25px 12px;
+  background: linear-gradient(145deg, #4b1424, #220b13);
+  border: 1px dashed #e78a9b;
+  border-radius: 12px;
+}
+
+.coupon h2 {
+  color: #f3a0af;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 23px;
+}
+
+.coupon p {
+  color: #e5cbd0;
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+.final-heart {
+  font-size: 65px;
+  margin: 20px;
+  animation: heartbeat 1.5s infinite;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 20px;
+  color: #9c6976;
+  font-size: 10px;
+  letter-spacing: 3px;
 }
 
 @keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.15);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
 }
 
 @keyframes appear {
@@ -133,9 +343,34 @@ button:hover {
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .topbar {
+    padding: 18px 5%;
+    font-size: 9px;
+  }
+
+  .coupons {
+    grid-template-columns: 1fr;
+  }
+
+  .letter-text {
+    padding: 20px;
+  }
+
+  .description {
+    font-size: 13px;
   }
 }
