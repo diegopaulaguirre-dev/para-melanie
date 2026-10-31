@@ -277,3 +277,41 @@ if (songPlayer) {
             "Una canción que siempre me recordará a ti. ❤️";
     });
 }
+function revealLetter() {
+    const button = document.getElementById("letterButton");
+    const letter = document.getElementById("loveLetter");
+    const text = document.getElementById("letterText");
+
+    const message = `Mi niña bonita… 🤍
+
+Si llegaste hasta aquí, quiero regalarte unas palabritas que nacen de lo más bonito de mi corazón.
+
+No sé si algún día encontraré las palabras exactas para describir lo especial que eres para mí, pero quiero que nunca olvides que tu llegada a mi vida fue una de esas casualidades que terminan convirtiéndose en recuerdos preciosos.
+
+Me gusta tu forma de ser, tu sonrisa, tus ocurrencias y hasta esos pequeños detalles que quizás tú no notas, pero que para mí tienen un valor enorme.
+
+Quiero verte feliz, cumplir tus sueños y que nunca te falten motivos para sonreír. Y si algún día me permites compartir un pedacito de ese camino contigo, quisiera llenarlo de cariño, paciencia, respeto y momentos que podamos guardar con mucho amor.
+
+No hice esto esperando algo a cambio. Lo hice porque hay sentimientos tan bonitos que simplemente merecen ser expresados.
+
+Gracias por existir, Melanie. Qué bonito fue coincidir contigo y qué bonito es poder llevarte en un rinconcito de mi corazón.
+
+Con muchísimo cariño, para ti, mi niña bonita. 🤍`; 
+  
+Te amo desde la primera vez que te vi, y te amaré hasta el último latido de mi corazón. ❤️
+
+    button.style.display = "none";
+    letter.classList.add("show");
+
+    let i = 0;
+
+    function writeText() {
+        if (i < message.length) {
+            text.textContent += message.charAt(i);
+            i++;
+            setTimeout(writeText, 35);
+        }
+    }
+
+    writeText();
+}
