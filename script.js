@@ -297,8 +297,6 @@ No hice esto esperando algo a cambio. Lo hice porque hay sentimientos tan bonito
 Gracias por existir, Melanie. Qué bonito fue coincidir contigo y qué bonito es poder llevarte en un rinconcito de mi corazón.
 
 Con muchísimo cariño, para ti, mi niña bonita. 🤍`; 
-  
-Te amo desde la primera vez que te vi, y te amaré hasta el último latido de mi corazón. ❤️
 
     button.style.display = "none";
     letter.classList.add("show");
