@@ -1,1 +1,76 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Melanie ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="container">
+
+    <section id="welcome" class="screen active">
+      <div class="heart">❤️</div>
+      <p class="subtitle">UN PEQUEÑO DETALLE PARA TI</p>
+      <h1>Para Melanie</h1>
+
+      <p class="description">
+        He preparado algo especial.
+        Son pequeños detalles que quiero compartir contigo.
+      </p>
+
+      <button onclick="startPage()">
+        Comenzar nuestra historia ♡
+      </button>
+    </section>
+
+    <section id="letter" class="screen">
+      <p class="subtitle">ACTIVIDAD 01 DE 07</p>
+      <h1>Un sobre para ti 💌</h1>
+
+      <div class="envelope" onclick="openLetter()">
+        <span>💌</span>
+        <p>Presiona para abrir</p>
+      </div>
+
+      <div id="letterText" class="letter-text">
+        <h2>Mi niña bonita:</h2>
+        <p>
+          Quiero pedirte perdón de corazón.
+          Sé que cometí errores y reconozco
+          que pude hacer las cosas mejor.
+
+          No quiero que estas palabras sean
+          solamente promesas. Quiero aprender
+          a demostrarte con hechos, paciencia
+          y respeto cuánto me importas.
+
+          Gracias por los momentos bonitos
+          que hemos compartido.
+
+          Con mucho cariño,
+          Paul ❤️
+        </p>
+
+        <button onclick="completeLetter()">
+          Terminé de leer ♡
+        </button>
+      </div>
+    </section>
+
+    <section id="next" class="screen">
+      <div class="heart">❤️</div>
+      <h1>Un detalle más para ti</h1>
+      <p class="description">
+        Gracias por descubrir esta primera sorpresa.
+      </p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
