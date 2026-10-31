@@ -246,6 +246,31 @@
 
   <script src="script.js"></script>
   <div class="music-player">
+    <p class="music-title">Una canción para ti ♡</p>
+
+    <div id="musicHeart" class="music-heart">❤️</div>
+
+    <h3>Prometo</h3>
+    <p>Mariachi Vargas de Tecalitlán</p>
+
+    <button id="musicButton" onclick="toggleMusic()">
+        ♡ Reproducir nuestra canción ♡
+    </button>
+
+    <div class="music-progress">
+        <div id="musicProgress"></div>
+    </div>
+
+    <p id="musicTime">00:00 / 00:00</p>
+
+    <audio id="ourSong" preload="metadata">
+        <source src="https://diegopaulaguirre-dev.github.io/para-melanie/Mariachi%20Vargas%20De%20Tecalitl%C3%A1n%20-%20Prometo.mp3" type="audio/mpeg">
+    </audio>
+
+    <p id="musicMessage">
+        Hay canciones que expresan lo que el corazón siente. ❤️
+    </p>
+</div>
     <p>Una canción para ti ♡</p>
 
     <button id="musicButton" onclick="toggleMusic()">
