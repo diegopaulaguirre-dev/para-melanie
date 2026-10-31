@@ -1,5 +1,36 @@
 
-// CAMBIAR ENTRE PANTALLAS
+// ===================================
+// CONFIGURACIÓN GENERAL
+// ===================================
+
+let completedActivities = 0;
+let discoveredReasons = new Set();
+let foundPieces = new Set();
+let quizCorrect = false;
+
+const reasons = [
+  "Me encanta tu sonrisa, tiene una manera especial de alegrarme.",
+  "Me gusta tu forma de ser, incluso esos pequeños detalles de tu carácter.",
+  "Me encanta cómo puedes convertir un momento sencillo en un recuerdo bonito.",
+  "Tus ojitos tienen algo que siempre consigue llamar mi atención.",
+  "Me gusta que seas tú, con tus virtudes, ocurrencias y esa esencia tan tuya."
+];
+
+const activityScreens = [
+  "welcome",
+  "activity1",
+  "activity2",
+  "activity3",
+  "activity4",
+  "activity5",
+  "activity6",
+  "activity7"
+];
+
+// ===================================
+// CAMBIAR DE PANTALLA
+// ===================================
+
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(screen => {
     screen.classList.remove("active");
@@ -13,12 +44,27 @@ function showScreen(id) {
   });
 }
 
-// COMENZAR LA EXPERIENCIA
-function startPage() {
-  showScreen("letter");
+// ===================================
+// ACTUALIZAR PROGRESO
+// ===================================
+
+function updateProgress() {
+  document.getElementById("progress").textContent =
+    completedActivities + " / 7 actividades";
 }
 
-// ABRIR EL SOBRE
+// ===================================
+// COMENZAR
+// ===================================
+
+function startPage() {
+  showScreen("activity1");
+}
+
+// ===================================
+// ACTIVIDAD 1: CARTA
+// ===================================
+
 function openLetter() {
   const letter = document.getElementById("letterText");
 
@@ -30,48 +76,149 @@ function openLetter() {
   });
 }
 
-// COMPLETAR PRIMERA ACTIVIDAD
-function completeLetter() {
-  showScreen("next");
+// ===================================
+// COMPLETAR ACTIVIDADES
+// ===================================
+
+function finishActivity(number) {
+  if (number === 2 && !quizCorrect) {
+    return;
+  }
+
+  if (number === 3 && discoveredReasons.size < 5) {
+    alert("Descubre los cinco corazones primero ❤️");
+    return;
+  }
+
+  if (number === 4 && foundPieces.size < 3) {
+    alert("Todavía faltan piezas del corazón ❤️");
+    return;
+  }
+
+  if (number > completedActivities) {
+    completedActivities = number;
+  }
+
+  updateProgress();
+
+  showScreen(activityScreens[number + 1]);
 }
 
-// CREAR CORAZONES ANIMADOS
-function createHearts() {
-  const container = document.createElement("div");
+// ===================================
+// ACTIVIDAD 2: PREGUNTAS
+// ===================================
 
-  container.style.position = "fixed";
-  container.style.inset = "0";
-  container.style.pointerEvents = "none";
-  container.style.overflow = "hidden";
-  container.style.zIndex = "-1";
+function answerQuiz(button, correct) {
+  if (quizCorrect) return;
 
-  document.body.appendChild(container);
+  const result = document.getElementById("quizResult");
+  const buttons = document.querySelectorAll(".answer");
 
-  setInterval(() => {
-    const heart = document.createElement("span");
+  buttons.forEach(answer => {
+    answer.disabled = true;
+  });
 
-    heart.innerHTML = "❤️";
+  if (correct) {
+    button.classList.add("correct");
 
-    heart.style.position = "absolute";
-    heart.style.left = Math.random() * 100 + "%";
-    heart.style.bottom = "-30px";
-    heart.style.fontSize = (12 + Math.random() * 18) + "px";
-    heart.style.opacity = "0.6";
-    heart.style.transition = "transform 7s linear, opacity 7s";
+    result.textContent =
+      "¡Correcto! Fue en junio, el mes en que comenzó nuestra historia. ❤️";
 
-    container.appendChild(heart);
+    quizCorrect = true;
 
-    requestAnimationFrame(() => {
-      heart.style.transform = "translateY(-110vh)";
-      heart.style.opacity = "0";
-    });
+    document.getElementById("quizContinue")
+      .classList.remove("hidden");
+
+  } else {
+    button.classList.add("wrong");
+
+    result.textContent =
+      "No era esa respuesta. Puedes intentarlo nuevamente. ❤️";
 
     setTimeout(() => {
-      heart.remove();
-    }, 7500);
-
-  }, 1200);
+      buttons.forEach(answer => {
+        answer.disabled = false;
+        answer.classList.remove("wrong");
+      });
+    }, 1000);
+  }
 }
 
-// INICIAR ANIMACIONES
-createHearts();
+// ===================================
+// ACTIVIDAD 3: CINCO RAZONES
+// ===================================
+
+function revealReason(index) {
+  const buttons = document.querySelectorAll(".reasons button");
+
+  document.getElementById("reasonText").textContent =
+    reasons[index];
+
+  discoveredReasons.add(index);
+
+  buttons[index].style.background = "#68182c";
+  buttons[index].style.borderColor = "#ff9aaa";
+
+  if (discoveredReasons.size === 5) {
+    document.getElementById("reasonText").textContent =
+      "¡Descubriste las cinco razones! Y todavía hay muchas más. ❤️";
+  }
+}
+
+// ===================================
+// ACTIVIDAD 4: ROMPECABEZAS
+// ===================================
+
+function findPiece(button) {
+  if (button.classList.contains("found")) return;
+
+  button.classList.add("found");
+  button.textContent = "❤️";
+
+  foundPieces.add(button);
+
+  document.getElementById("puzzleResult").textContent =
+    "Piezas encontradas: " + foundPieces.size + " / 3";
+
+  if (foundPieces.size === 3) {
+    document.getElementById("puzzleMessage").textContent =
+      "Un corazón puede guardar muchísimos recuerdos bonitos. ❤️";
+
+    document.getElementById("puzzleContinue")
+      .classList.remove("hidden");
+  }
+}
+
+// ===================================
+// CORAZONES FLOTANTES
+// ===================================
+
+function createFloatingHeart() {
+  const container = document.getElementById("floating-hearts");
+
+  const heart = document.createElement("span");
+
+  heart.className = "floating-heart";
+  heart.textContent = Math.random() > 0.5 ? "❤️" : "♡";
+
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.fontSize = (12 + Math.random() * 20) + "px";
+
+  const duration = 5 + Math.random() * 5;
+
+  heart.style.animationDuration = duration + "s";
+
+  container.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000);
+}
+
+// ===================================
+// INICIAR LA PÁGINA
+// ===================================
+
+updateProgress();
+
+setInterval(createFloatingHeart, 900);
