@@ -1,0 +1,141 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle, #421018, #10090c 75%);
+  color: white;
+  font-family: Georgia, serif;
+  overflow-x: hidden;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  text-align: center;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 600px;
+  animation: appear 0.8s ease;
+}
+
+.screen.active {
+  display: block;
+}
+
+.heart {
+  font-size: 65px;
+  margin-bottom: 20px;
+  animation: heartbeat 1.5s infinite;
+}
+
+h1 {
+  color: #ff667b;
+  font-size: 42px;
+  margin: 18px 0;
+}
+
+.subtitle {
+  color: #ff9aaa;
+  letter-spacing: 3px;
+  font-size: 11px;
+  margin: 15px 0;
+}
+
+.description {
+  color: #e8d5d8;
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 20px auto;
+}
+
+button {
+  background: #a71932;
+  color: white;
+  border: 1px solid #ff7185;
+  border-radius: 30px;
+  padding: 15px 27px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #e02b4c;
+  transform: scale(1.05);
+}
+
+.envelope {
+  background: linear-gradient(145deg, #a71932, #510c1c);
+  border: 1px solid #ff7185;
+  border-radius: 15px;
+  padding: 45px 20px;
+  margin: 30px auto;
+  max-width: 320px;
+  cursor: pointer;
+  box-shadow: 0 0 30px #a7193255;
+}
+
+.envelope span {
+  font-size: 65px;
+}
+
+.envelope p {
+  margin-top: 15px;
+  color: #ffe2e7;
+}
+
+.letter-text {
+  display: none;
+  background: #f8e9e9;
+  color: #3b1019;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: left;
+  line-height: 1.8;
+  white-space: pre-line;
+  margin-top: 20px;
+}
+
+.letter-text h2 {
+  color: #a71932;
+  margin-bottom: 15px;
+}
+
+.letter-text button {
+  display: block;
+  margin: 20px auto 0;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
