@@ -4,73 +4,246 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Melanie ❤️</title>
+  <title>Un lugar para ti, Melanie ❤️</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <div id="floating-hearts"></div>
+
+  <header class="topbar">
+    <span>PARA MELANIE ♡</span>
+    <span id="progress">0 / 7 actividades</span>
+  </header>
+
   <main class="container">
 
+    <!-- BIENVENIDA -->
     <section id="welcome" class="screen active">
-      <div class="heart">❤️</div>
-      <p class="subtitle">UN PEQUEÑO DETALLE PARA TI</p>
-      <h1>Para Melanie</h1>
-
+      <div class="rose">🥀</div>
+      <p class="subtitle">UNA PEQUEÑA SORPRESA PARA TI</p>
+      <h1>Un lugar para ti</h1>
+      <h2 class="name">Melanie ❤️</h2>
       <p class="description">
-        He preparado algo especial.
-        Son pequeños detalles que quiero compartir contigo.
+        Preparé un pequeño recorrido con palabras,
+        recuerdos y detalles que nacen de mi corazón.
       </p>
-
-      <button onclick="startPage()">
-        Comenzar nuestra historia ♡
-      </button>
+      <button onclick="startPage()">Descubrir mi sorpresa ♡</button>
+      <p class="small-note">Hecho con cariño, especialmente para ti.</p>
     </section>
 
-    <section id="letter" class="screen">
-      <p class="subtitle">ACTIVIDAD 01 DE 07</p>
+    <!-- ACTIVIDAD 1 -->
+    <section id="activity1" class="screen">
+      <p class="subtitle">ACTIVIDAD 01</p>
       <h1>Un sobre para ti 💌</h1>
+      <p class="description">Hay algunas palabras que quisiera compartir contigo.</p>
 
       <div class="envelope" onclick="openLetter()">
         <span>💌</span>
         <p>Presiona para abrir</p>
       </div>
 
-      <div id="letterText" class="letter-text">
+      <article id="letterText" class="letter-text">
         <h2>Mi niña bonita:</h2>
         <p>
-          Quiero pedirte perdón de corazón.
-          Sé que cometí errores y reconozco
-          que pude hacer las cosas mejor.
+          Quiero comenzar reconociendo mis errores.
+          Sé que hubo momentos en los que pude actuar
+          de una mejor manera y lamento haberte hecho
+          sentir mal.
 
-          No quiero que estas palabras sean
-          solamente promesas. Quiero aprender
-          a demostrarte con hechos, paciencia
-          y respeto cuánto me importas.
+          No quiero pedirte que olvides lo sucedido
+          ni que mis palabras solucionen todo.
+          Quiero aprender de lo que pasó y demostrar
+          con mis acciones que puedo hacer las cosas
+          de una manera diferente.
 
-          Gracias por los momentos bonitos
-          que hemos compartido.
+          Gracias por los momentos bonitos que
+          compartimos, por las risas y por cada
+          recuerdo que guardo con cariño.
+
+          Me importas muchísimo y deseo que estés
+          bien, independientemente del tiempo que
+          necesites.
 
           Con mucho cariño,
           Paul ❤️
         </p>
-
-        <button onclick="completeLetter()">
-          Terminé de leer ♡
-        </button>
-      </div>
+        <button onclick="finishActivity(1)">Continuar ♡</button>
+      </article>
     </section>
 
-    <section id="next" class="screen">
-      <div class="heart">❤️</div>
-      <h1>Un detalle más para ti</h1>
+    <!-- ACTIVIDAD 2 -->
+    <section id="activity2" class="screen">
+      <p class="subtitle">ACTIVIDAD 02</p>
+      <h1>Un poquito de nosotros</h1>
+      <p class="description">Veamos cuánto recuerdas de nuestra historia.</p>
+
+      <div class="quiz-card">
+        <h2>¿En qué mes nos conocimos?</h2>
+        <div class="answers">
+          <button class="answer" onclick="answerQuiz(this, false)">Abril</button>
+          <button class="answer" onclick="answerQuiz(this, true)">Junio ❤️</button>
+          <button class="answer" onclick="answerQuiz(this, false)">Agosto</button>
+        </div>
+        <p id="quizResult"></p>
+      </div>
+
+      <button id="quizContinue" class="hidden"
+        onclick="finishActivity(2)">Continuar ♡</button>
+    </section>
+
+    <!-- ACTIVIDAD 3 -->
+    <section id="activity3" class="screen">
+      <p class="subtitle">ACTIVIDAD 03</p>
+      <h1>Pequeñas razones ❤️</h1>
       <p class="description">
-        Gracias por descubrir esta primera sorpresa.
+        Cada corazón guarda una cosita que me encanta de ti.
       </p>
+
+      <div class="reasons">
+        <button onclick="revealReason(0)">❤️</button>
+        <button onclick="revealReason(1)">❤️</button>
+        <button onclick="revealReason(2)">❤️</button>
+        <button onclick="revealReason(3)">❤️</button>
+        <button onclick="revealReason(4)">❤️</button>
+      </div>
+
+      <p id="reasonText" class="reason-text">
+        Toca un corazón para descubrir una razón.
+      </p>
+
+      <button onclick="finishActivity(3)">Continuar ♡</button>
+    </section>
+
+    <!-- ACTIVIDAD 4 -->
+    <section id="activity4" class="screen">
+      <p class="subtitle">ACTIVIDAD 04</p>
+      <h1>Un corazón por completar</h1>
+      <p class="description">
+        Encuentra las tres piezas para descubrir el mensaje.
+      </p>
+
+      <div class="puzzle">
+        <button onclick="findPiece(this)">❤️</button>
+        <button onclick="findPiece(this)">♡</button>
+        <button onclick="findPiece(this)">❤️</button>
+      </div>
+
+      <p id="puzzleResult">Piezas encontradas: 0 / 3</p>
+      <p id="puzzleMessage" class="reason-text"></p>
+
+      <button id="puzzleContinue" class="hidden"
+        onclick="finishActivity(4)">Continuar ♡</button>
+    </section>
+
+    <!-- ACTIVIDAD 5 -->
+    <section id="activity5" class="screen">
+      <p class="subtitle">ACTIVIDAD 05</p>
+      <h1>Nuestra historia</h1>
+      <p class="description">Un recuerdo que siempre guardaré.</p>
+
+      <div class="timeline">
+        <div class="memory">
+          <span>13 DE JUNIO</span>
+          <h2>El comienzo ✨</h2>
+          <p>
+            Aquel sábado en la inauguración de nivelación
+            fue el día en que te conocí. Recuerdo haberte
+            visto y cómo, sin imaginarlo, comenzaba
+            una historia muy especial para mí.
+          </p>
+        </div>
+
+        <div class="memory">
+          <span>UN RECUERDO BONITO</span>
+          <h2>Las sonrisas ❤️</h2>
+          <p>
+            Las conversaciones, las risas y esos
+            pequeños momentos que hicieron que
+            empezaras a ocupar un lugar especial
+            en mi corazón.
+          </p>
+        </div>
+
+        <div class="memory">
+          <span>HOY</span>
+          <h2>Aprender y mejorar 🌹</h2>
+          <p>
+            También he aprendido que querer a alguien
+            significa escuchar, respetar y cuidar.
+            Hay cosas que todavía debo mejorar.
+          </p>
+        </div>
+      </div>
+
+      <button onclick="finishActivity(5)">Continuar ♡</button>
+    </section>
+
+    <!-- ACTIVIDAD 6 -->
+    <section id="activity6" class="screen">
+      <p class="subtitle">ACTIVIDAD 06</p>
+      <h1>Pequeños cupones 🎟️</h1>
+      <p class="description">
+        Detallitos para compartir cuando ambos quieran.
+      </p>
+
+      <div class="coupons">
+        <div class="coupon">
+          <h2>Un abrazo</h2>
+          <p>De esos que hacen sentir que todo está bien.</p>
+        </div>
+
+        <div class="coupon">
+          <h2>Una cita bonita</h2>
+          <p>Un momento para reír y disfrutar juntos.</p>
+        </div>
+
+        <div class="coupon">
+          <h2>Un detalle sorpresa</h2>
+          <p>Porque los pequeños detalles también importan.</p>
+        </div>
+
+        <div class="coupon">
+          <h2>Una tarde de risas</h2>
+          <p>Sin preocupaciones, solamente disfrutar.</p>
+        </div>
+      </div>
+
+      <button onclick="finishActivity(6)">Continuar ♡</button>
+    </section>
+
+    <!-- ACTIVIDAD 7 -->
+    <section id="activity7" class="screen">
+      <p class="subtitle">ÚLTIMA ACTIVIDAD</p>
+      <div class="rose">🌹</div>
+      <h1>Unas últimas palabras</h1>
+
+      <p class="description">
+        Melanie, gracias por llegar hasta aquí.
+
+        No espero que una página cambie lo sucedido
+        ni que tengas que darme una respuesta.
+
+        Quiero que sepas que valoro lo que hemos
+        compartido y que tengo mucho que aprender.
+
+        Si algo deseo demostrarte, es que las
+        palabras deben acompañarse de acciones.
+
+        Cuídate muchísimo, mi niña bonita.
+
+        Con cariño,
+        Paul ❤️
+      </p>
+
+      <div class="final-heart">❤️</div>
+      <p class="small-note">Esta pequeña página fue hecha para ti.</p>
     </section>
 
   </main>
 
+  <footer>HECHO CON CARIÑO ♡</footer>
+
   <script src="script.js"></script>
 </body>
 </html>
-
