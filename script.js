@@ -222,3 +222,21 @@ function createFloatingHeart() {
 updateProgress();
 
 setInterval(createFloatingHeart, 900);
+function toggleMusic() {
+    const song = document.getElementById("ourSong");
+    const button = document.getElementById("musicButton");
+    const message = document.getElementById("musicMessage");
+
+    if (song.paused) {
+        song.play().then(() => {
+            button.innerHTML = "♡ Pausar canción ♡";
+            message.textContent = "Esta canción es para ti, Melanie ❤️";
+        }).catch(() => {
+            message.textContent = "No se pudo reproducir. Revisa el archivo de música.";
+        });
+    } else {
+        song.pause();
+        button.innerHTML = "♡ Reproducir nuestra canción ♡";
+        message.textContent = "Cuando quieras, seguimos escuchando juntos.";
+    }
+}
